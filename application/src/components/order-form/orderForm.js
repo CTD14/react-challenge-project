@@ -18,9 +18,13 @@ class OrderForm extends Component {
             quantity: "1"
         }
     }
-
+    alertOrder = (success) => {
+        if (!success) {
+            return alert('Try Again Dawg');
+        }
+    }
     menuItemChosen(event) {
-        this.setState({ item: event.target.value });
+        this.setState({ order_item: event.target.value });
     }
 
     menuQuantityChosen(event) {
@@ -45,6 +49,7 @@ class OrderForm extends Component {
         .then(response => console.log("Success", JSON.stringify(response)))
         .catch(error => console.error(error));
     }
+ 
 
     render() {
         return (
@@ -52,12 +57,8 @@ class OrderForm extends Component {
                 <div className="form-wrapper">
                     <form>
                         <label className="form-label">I'd like to order...</label><br />
-                        <select 
-                            value={this.state.order_item} 
-                            onChange={(event) => this.menuItemChosen(event)}
-                            className="menu-select"
-                        >
-                            <option value="" defaultValue disabled hidden>Lunch menu</option>
+                        <select value={this.state.order_item}  onChange={(event) => this.menuItemChosen(event)}  className="menu-select">
+                        <option value="" defaultValue disabled hidden>Lunch menu</option>
                             <option value="Soup of the Day">Soup of the Day</option>
                             <option value="Linguini With White Wine Sauce">Linguini With White Wine Sauce</option>
                             <option value="Eggplant and Mushroom Panini">Eggplant and Mushroom Panini</option>
